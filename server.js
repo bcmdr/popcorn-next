@@ -17,15 +17,17 @@ const firebase = admin.initializeApp(
   'server'
 )
 
+require('dotenv').config({ path: 'variables.env' })
+
 app.prepare().then(() => {
   const server = express()
 
   server.use(bodyParser.json())
   server.use(
     session({
-      secret: 'geheimnis',
+      secret: process.env.SESSION_SECRET,
       saveUninitialized: true,
-      store: new FileStore({ secret: 'geheimnis' }),
+      store: new FileStore({ secret: process.env.SESSION_SECRET }),
       resave: false,
       rolling: true,
       httpOnly: true,
