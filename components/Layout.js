@@ -28,6 +28,12 @@ export default function Layout({children}) {
             ))}
           </ul>
         </nav>
+        <section className="search">
+          <form action="/search" method="get">
+            <input type="text" name="query" id="query" required/>
+            <input type="submit" value="Search" />
+          </form>
+        </section>
       </header>
       <main>
         {children}

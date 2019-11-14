@@ -5,9 +5,8 @@ import "firebase/firestore";
 import "isomorphic-unfetch";
 import clientCredentials from "../credentials/client";
 import LoginLogout from "../components/LoginLogout";
-import Link from "next/link";
-import Head from "next/head";
 import Layout from "../components/Layout"
+import '../style.css'
 
 export default class Index extends Component {
   static async getInitialProps({ req, query }) {
