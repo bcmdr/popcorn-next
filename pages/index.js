@@ -7,6 +7,7 @@ import clientCredentials from "../credentials/client";
 import LoginLogout from "../components/LoginLogout";
 import Link from "next/link";
 import Head from "next/head";
+import Layout from "../components/Layout"
 
 export default class Index extends Component {
   static async getInitialProps({ req, query }) {
@@ -117,23 +118,7 @@ export default class Index extends Component {
     const { user, value, messages } = this.state;
 
     return (
-      <div id="Index">
-        <Head>
-          <title>Popcorn</title>
-          <meta
-            name="viewport"
-            content="initial-scale=1.0, width=device-width"
-          />
-        </Head>
-        <nav>
-          <ul>
-            <li>
-              <Link href="/search">
-                <a>Search</a>
-              </Link>
-            </li>
-          </ul>
-        </nav>
+      <Layout>
         <div style={{ float: "right" }}>
           <LoginLogout user={user} />
         </div>
@@ -155,7 +140,7 @@ export default class Index extends Component {
             </ul>
           </div>
         )}
-      </div>
+      </Layout>
     );
   }
 }
