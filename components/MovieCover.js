@@ -4,7 +4,11 @@ import clientCredentials from "../credentials/client"
 
 function MovieCover(props) {
 
-  const [data, setData] = useState(props.data);
+  const [data, setData] = useState(props.data || {
+    interested: false,
+    seen: false,
+    favourite: false
+  });
 
   const handleInterested = () => {
     setData({

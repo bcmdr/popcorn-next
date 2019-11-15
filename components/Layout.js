@@ -1,18 +1,19 @@
 import React from 'react'
 import Link from "next/link";
 import Head from "next/head";
+import LoginLogout from "./LoginLogout"
 
 import '../style.css'
 
-export default function Layout({children}) {
+export default function Layout({title, user, children}) {
   const links = {
     '/': 'Home',
     '/search': 'Search'
   }
   return (
-    <div id="Layout">
+    <div className="Layout">
       <Head>
-        <title>Popcorn</title>
+        <title>PopCorn - {title}</title>
         <meta
           name="viewport"
           content="initial-scale=1.0, width=device-width"
@@ -28,6 +29,7 @@ export default function Layout({children}) {
                 </Link>
               </li>
             ))}
+            <li key={'login'}><LoginLogout user={user} /></li>
           </ul>
         </nav>
         <section className="search">

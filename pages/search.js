@@ -9,7 +9,7 @@ import MovieCover from '../components/MovieCover'
 import Layout from '../components/Layout'
 import '../style.css'
 
-function Search({ config, results, user, db, data }) {
+function Search({ config, results, user, data }) {
 
   useEffect(() => {
     if (!firebase.apps.length) {
@@ -18,7 +18,7 @@ function Search({ config, results, user, db, data }) {
   })
 
   return (
-    <Layout>
+    <Layout title="Search" user={user}>
       <section className="results covers">
         {config && results && results.map((result, index) => {
           return (
@@ -30,9 +30,6 @@ function Search({ config, results, user, db, data }) {
               result={result}
               data={data[result.id]}
               config={config}
-              // handleInterested={(event) => handleChange(event, result.id, 'interested')}
-              // handeSeen={(event) => handleChange(event, result.id, 'seen')}
-              // handleFavourite={(event) => handleChange(event, result.id, 'favourite')}
             />
           )
         })}
@@ -66,16 +63,19 @@ Search.getInitialProps = async ({req, query}) => {
   
     const db = req && req.firebaseServer ? req.firebaseServer.firestore() : firebase.firestore();
 
-    const userRef = user && await db.collection(`${user.uid}`)
-    const snap = await userRef.get();
     let data = {
       interested: false,
       seen: false,
       favourite: false,
     };
-    snap.forEach(s => data[s.id] = s.data());
 
-    return { config, results: results.results, user, db, data};
+    const userRef = user && db.collection(`${user.uid}`);
+    if (userRef) {
+      const snap = await userRef.get();
+      snap && snap.forEach(s => data[s.id] = s.data());
+    }
+
+    return { config, results: results.results, user, data};
 
   } catch (error) {
     console.error(error);
