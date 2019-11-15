@@ -105,7 +105,7 @@ main {
   visibility: visible;
 }
 
-.controls button:nth-child(1) {
+.controls button[data-val="true"] {
   background: white;
   color: black;
 }
@@ -118,8 +118,4 @@ main {
   padding: 0.25rem 0.5rem;
   background: none;
   margin: 0.25rem;
-}
-
-.interested button[data-label="interested"] {
-  background: red;
 }
