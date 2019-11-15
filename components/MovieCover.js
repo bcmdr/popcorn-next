@@ -36,6 +36,7 @@ function MovieCover(props) {
 
   useEffect(() => {
     async function fetchData() {
+      if (!props.user) return;
       if (!props.firebase.apps.length) {
         props.firebase.initializeApp(clientCredentials);
       }
@@ -72,11 +73,14 @@ function MovieCover(props) {
       {props.result.poster_path ? (
         <img src={`${props.config.images.secure_base_url}${props.config.images.poster_sizes[2]}/${props.result.poster_path}`}></img>
       ) : null}
-      <div className="controls">
-        <button data-val={data.interested} onClick={handleInterested}>Interested</button>
-        <button data-val={data.seen} onClick={handleSeen}>Seen</button>
-        <button data-val={data.favourite} onClick={handleFavourite}>Favourite</button>
-      </div>
+      { props.user &&  (
+        <div className="controls">
+          <button data-val={data.interested} onClick={handleInterested}>Interested</button>
+          <button data-val={data.seen} onClick={handleSeen}>Seen</button>
+          <button data-val={data.favourite} onClick={handleFavourite}>Favourite</button>
+        </div>
+        )
+      }
     </div>
   )
 }
