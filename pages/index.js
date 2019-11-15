@@ -118,9 +118,6 @@ export default class Index extends Component {
 
     return (
       <Layout title="Home">
-        <div style={{ float: "right" }}>
-          <LoginLogout user={user} />
-        </div>
         {user && (
           <div>
             <form onSubmit={this.handleSubmit}>
