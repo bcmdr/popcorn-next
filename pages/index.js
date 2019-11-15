@@ -120,20 +120,6 @@ export default class Index extends Component {
       <Layout title="Home">
         {user && (
           <div>
-            <form onSubmit={this.handleSubmit}>
-              <input
-                type={"text"}
-                onChange={this.handleChange}
-                placeholder={"add message..."}
-                value={value}
-              />
-            </form>
-            <ul>
-              {messages &&
-                Object.keys(messages).map(key => (
-                  <li key={key}>{messages[key].text}</li>
-                ))}
-            </ul>
           </div>
         )}
       </Layout>
