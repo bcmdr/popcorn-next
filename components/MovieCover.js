@@ -48,22 +48,6 @@ function MovieCover(props) {
       });
     }
     fetchData();
-    // try {
-    //   let doc = await movieRef.get()
-    //   if (!doc.exists) {
-    //     movieRef.update({ [toggle]: true })
-    //     newData[toggle] = true;
-    //   } else {
-    //     const data = doc.data();
-    //     newData[toggle] = !data[toggle]
-    //     movieRef.update({
-    //       [toggle]: newData[toggle] 
-    //     });
-    //     console.log('State data:', data);
-    //   }
-    // } catch (error) {
-    //     console.log('Error getting document', error);
-    // }
   }, [data])
 
 
@@ -73,13 +57,13 @@ function MovieCover(props) {
       {props.result.poster_path ? (
         <img src={`${props.config.images.secure_base_url}${props.config.images.poster_sizes[2]}/${props.result.poster_path}`}></img>
       ) : null}
-      { props.user &&  (
+      { props.user? (
         <div className="controls">
           <button data-val={data.interested} onClick={handleInterested}>Interested</button>
           <button data-val={data.seen} onClick={handleSeen}>Seen</button>
           <button data-val={data.favourite} onClick={handleFavourite}>Favourite</button>
         </div>
-        )
+        ) : null
       }
     </div>
   )
